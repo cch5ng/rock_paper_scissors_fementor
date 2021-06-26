@@ -5,6 +5,7 @@ function App() {
     <div className="App">
       <header></header>
       <main>
+        <div className="header"></div>
       Score
   Rules
 
