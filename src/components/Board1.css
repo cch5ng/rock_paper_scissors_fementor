@@ -8,7 +8,7 @@
 
 .row_bottom {
   width: 50%;
-  margin: 0 auto 100px auto;
+  margin: 25px auto 100px auto;
 }
 
 .choice_icon {
@@ -27,16 +27,25 @@
 }
 
 .paper_icon {
-  margin-right: 25px;
   border-color: var(--paper-gradient1);
 }
 
 .scissors_icon {
-  margin-left: 25px;
   border-color: var(--scissors-gradient1);
 }
 
 .rock_icon {
-  margin-top: 50px;
   border-color: var(--rock-gradient1);
+}
+
+.icon_left {
+  margin-right: 25px;
+}
+
+.icon_right {
+  margin-left: 25px;
+}
+
+.icon_bottom {
+  margin-top: 25px;
 }
