@@ -1,6 +1,7 @@
 .game_board_container {
   background: radial-gradient(var(--bgd-radial-gradient1), var(--bgd-radial-gradient2));
   min-height: 100vh;
+  padding: 40px;
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
@@ -17,9 +18,9 @@
   align-items: center;
   border: 3px solid var(--header-outline);
   border-radius: 5px;
-  width: 80%;
+  width: 100%;
   height: 80px;
-  margin: 10%;
+  /* margin: 10%; */
   padding: 15px;
 }
 
