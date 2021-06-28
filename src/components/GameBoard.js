@@ -3,11 +3,34 @@ import {useState} from 'react';
 import Board1 from './Board1';
 import Board2 from './Board2';
 
+const choiceMap = new Map();
+choiceMap.set(0, 'rock');
+choiceMap.set(1, 'paper');
+choiceMap.set(2, 'scissors')
+
+//calculate this programmatically? don't like how it is redundant
+const winners = {
+  'paper': {
+    'scissors': 0,
+    'rock': 1,
+  },
+  'scissors': {
+    'paper': 0,
+    'rock': 1,
+  },
+  'rock': {
+    'paper': 1,
+    'scissors': 0
+  }
+}
+
 const GameBoard = ({ toggleModal }) => {
 
   const [score, setScore] = useState(0);
   const [userChoice, setUserChoice] = useState(null);
-  const [gameState, setGameState] = useState(1); //1 - 4; 4 could be further 4 win or 4 lose
+  const [gameState, setGameState] = useState(1); //1 - 2
+  const [computerChoice, setComputerChoice] = useState('');
+  const [winner, setWinner] = useState('');
 
   const handleUserChoice = (id) => {
     if (id) {
@@ -19,11 +42,62 @@ const GameBoard = ({ toggleModal }) => {
   const resetGame = () => {
     setUserChoice(null);
     setGameState(1);
-    //setScore(0);
+    setComputerChoice('');
+    setWinner('');
   }
 
   const appendScore = () => {
     setScore(score + 1);
+  }
+
+  // /*
+// Paper beats Rock
+// - Rock beats Scissors
+// - Scissors beats Paper
+// */
+
+  const getWinner = (userChoice, computerChoice) => {
+    let curWinner;
+    if (userChoice === computerChoice) {
+      curWinner = 'none';
+    }
+    if (userChoice === 'rock') {
+      if (computerChoice === 'paper') {
+        curWinner =  'computer'
+      } else if (computerChoice === 'scissors') {
+        curWinner =  'user'
+      }
+    }
+    if (userChoice === 'paper') {
+      if (computerChoice === 'rock') {
+        curWinner =  'user'
+      } else if (computerChoice === 'scissors') {
+        curWinner =  'computer'
+      }
+
+    }
+    if (userChoice === 'scissors') {
+      if (computerChoice === 'rock') {
+        curWinner =  'computer'
+      } else if (computerChoice === 'paper') {
+        curWinner =  'user'
+      }
+    }
+
+    setWinner(curWinner);
+    if (curWinner === 'user') {
+      appendScore();
+    }
+  }
+
+  const getComputerChoice = () => {
+    const numChoice = Math.floor(Math.random() * 3);
+    if (choiceMap.has(numChoice)) {
+      let compChoice = choiceMap.get(numChoice);
+      console.log('compChoice', compChoice);
+      setComputerChoice(compChoice);
+      getWinner(userChoice, compChoice);
+    }
   }
 
   return (
@@ -38,7 +112,10 @@ const GameBoard = ({ toggleModal }) => {
         )}
 
         {gameState === 2 && (
-          <Board2 userChoice={userChoice} resetGame={resetGame} appendScore={appendScore} />
+          <Board2 userChoice={userChoice} resetGame={resetGame} appendScore={appendScore} 
+            computerChoice={computerChoice} winner={winner} getWinner={getWinner}
+            getComputerChoice={getComputerChoice}
+          />
         )}
       </div>
       <div className="game_footer">
