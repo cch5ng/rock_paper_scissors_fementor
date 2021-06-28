@@ -3,7 +3,7 @@ import {useState} from 'react';
 import Board1 from './Board1';
 import Board2 from './Board2';
 
-const GameBoard = ({}) => {
+const GameBoard = ({ toggleModal }) => {
 
   const [score, setScore] = useState(0);
   const [userChoice, setUserChoice] = useState(null);
@@ -42,7 +42,7 @@ const GameBoard = ({}) => {
         )}
       </div>
       <div className="game_footer">
-        <button>Rules</button>
+        <button onClick={toggleModal}>Rules</button>
       </div>
 
 

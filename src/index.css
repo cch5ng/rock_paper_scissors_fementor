@@ -1,3 +1,11 @@
+:root {
+  --game-board-bg-color: #000;
+  --rules-bg-color: #e5e5e5;
+  --text-dark: hsl(229, 25%, 31%);
+  --text-score: hsl(229, 64%, 46%);
+  --header-outline: hsl(217, 16%, 45%);
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -9,6 +17,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',

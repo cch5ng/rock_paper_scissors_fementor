@@ -1,16 +1,33 @@
 import {useState} from 'react';
+// import {
+//   BrowserRouter as Router,
+//   Switch,
+//   Route,
+// } from "react-router-dom";
 
-import GameBoard from './components/GameBoard'
 import './App.css';
+import GameBoard from './components/GameBoard';
+import Modal from './components/Modal';
+//import Rules from './components/Rules';
 
 function App() {
+
+  const [showModal, setShowModal] = useState(false);
+
+  const toggleModal = () => {
+    setShowModal(!showModal);
+  }
+
   return (
     <div className="App">
       <header></header>
       <main>
-        <GameBoard />
-
-    
+        {showModal && (
+          <Modal toggleModal={toggleModal}/>
+        )}
+        {!showModal && (
+          <GameBoard toggleModal={toggleModal} />
+        )}      
       </main>
       {/* <footer>
         <div class="attribution">
@@ -19,7 +36,7 @@ function App() {
         </div>
 
       </footer> */}
-    </div>
+      </div>
   );
 }
 
