@@ -127,7 +127,7 @@ const GameBoard = ({ toggleModal }) => {
         )}
       </div>
       <div className="game_footer">
-        <button onClick={toggleModal}>Rules</button>
+        <button className="btn" onClick={toggleModal}>Rules</button>
       </div>
     </div>
   )
