@@ -121,12 +121,8 @@ const GameBoard = ({ toggleModal }) => {
       <div className="game_footer">
         <button onClick={toggleModal}>Rules</button>
       </div>
-
-
     </div>
-
   )
-
 }
 
 export default GameBoard;
