@@ -1,14 +1,8 @@
 import {useState} from 'react';
-// import {
-//   BrowserRouter as Router,
-//   Switch,
-//   Route,
-// } from "react-router-dom";
 
 import './App.css';
 import GameBoard from './components/GameBoard';
 import Modal from './components/Modal';
-//import Rules from './components/Rules';
 
 function App() {
 
