@@ -2,6 +2,8 @@ import {useState} from 'react';
 
 import Board1 from './Board1';
 import Board2 from './Board2';
+import './GameBoard.css';
+import logo from '../images/logo.svg';
 
 const choiceMap = new Map();
 choiceMap.set(0, 'rock');
@@ -56,6 +58,7 @@ const GameBoard = ({ toggleModal }) => {
 // - Scissors beats Paper
 // */
 
+//faster to evaluated against sorted array if sorted array deep equals key, then get the winner
   const getWinner = (userChoice, computerChoice) => {
     let curWinner;
     if (userChoice === computerChoice) {
@@ -101,10 +104,15 @@ const GameBoard = ({ toggleModal }) => {
   }
 
   return (
-    <div>
-      <div className="game_header">
-        <div>LOGO</div>
-        <div>Score {score}</div>
+    <div className="game_board_container">
+      <div className="game_head_container">
+        <div>
+          <img src={logo} alttext="logo" className="img_logo" />
+        </div>
+        <div className="score_container">
+          <div className="text_score">Score</div>
+          <div className="text_score_num">{score}</div>
+        </div>
       </div>
       <div className="game_main">
         {gameState === 1 && (
@@ -119,7 +127,7 @@ const GameBoard = ({ toggleModal }) => {
         )}
       </div>
       <div className="game_footer">
-        <button onClick={toggleModal}>Rules</button>
+        <button className="btn btn_primary" onClick={toggleModal}>Rules</button>
       </div>
     </div>
   )

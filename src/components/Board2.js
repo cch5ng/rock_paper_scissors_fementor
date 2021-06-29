@@ -1,5 +1,16 @@
 import {useEffect, useState} from 'react';
 
+import iconPaper from '../images/icon-paper.svg';
+import iconRock from '../images/icon-rock.svg';
+import iconScissors from '../images/icon-scissors.svg';
+import './Board1.css';
+
+const iconsKey = {
+  paper: iconPaper,
+  rock: iconRock,
+  scissors: iconScissors,
+}
+
 const Board2 = ({userChoice, resetGame, appendScore, 
   computerChoice, winner, getWinner, getComputerChoice}) => {
 
@@ -7,15 +18,32 @@ const Board2 = ({userChoice, resetGame, appendScore,
     getComputerChoice();
   }, []);
 
+  let userChoiceDivClass = `choice_icon icon_left ${userChoice}_icon`;
+  let computerChoiceDivClass = `choice_icon icon_right ${computerChoice}_icon`;;
+
   return (
     <div className="game_board2">
-      <div>You Picked {userChoice}</div>
-      <div>The House Picked {computerChoice}</div>
+      <div className="row_top">
+        <div className={userChoiceDivClass} >
+          <img src={iconsKey[userChoice]} className={userChoice} alttext="user choice icon" />
+        </div>
+        <div className={computerChoiceDivClass} >
+          <img src={iconsKey[computerChoice]} className={computerChoice} alttext="computer choice icon" />
+        </div>
+      </div>
+      <div className="row">
+        <div className="choice_caption" >
+          You Picked
+        </div>
+        <div className="choice_caption" >
+          The House Picked
+        </div>
+      </div>
 
       {winner.length > 0 && (
-        <div>
-          <div>You {winner === 'user' ? 'Win' : 'Lose'}</div>
-          <button onClick={resetGame}>Play Again</button>
+        <div className="center">
+          <div className="text_outcome">YOU {winner === 'user' ? 'WIN' : 'LOSE'}</div>
+          <button className="btn btn_secondary" onClick={resetGame}>Play Again</button>
         </div>
       )}
     </div>
