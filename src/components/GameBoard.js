@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 
 import './GameBoard.css';
 import logo from '../images/logo.svg';
@@ -30,7 +30,6 @@ const GameBoard = ({ toggleModal }) => {
       setUserChoice(id);
       setGameState(2);
     } else if (className) {
-      console.log('className', className)
       setUserChoice(className);
       setGameState(2);
     }
@@ -43,10 +42,6 @@ const GameBoard = ({ toggleModal }) => {
     setWinner('');
   }
 
-  // const appendScore = () => {
-  //   setScore(score + 1);
-  // }
-
   // /*
 // Paper beats Rock
 // - Rock beats Scissors
@@ -55,46 +50,49 @@ const GameBoard = ({ toggleModal }) => {
 
 //faster to evaluated against sorted array if sorted array deep equals key, then get the winner
   const getWinner = () => {
-    let curWinner;
-    if (userChoice === computerChoice) {
-      curWinner = 'none';
-    }
-    if (userChoice === 'rock') {
-      if (computerChoice === 'paper') {
-        curWinner =  'computer'
-      } else if (computerChoice === 'scissors') {
-        curWinner =  'user'
+      let curWinner;
+      if (userChoice === computerChoice) {
+        curWinner = 'none';
       }
-    }
-    if (userChoice === 'paper') {
-      if (computerChoice === 'rock') {
-        curWinner =  'user'
-      } else if (computerChoice === 'scissors') {
-        curWinner =  'computer'
+      if (userChoice === 'rock') {
+        if (computerChoice === 'paper') {
+          curWinner =  'computer'
+        } else if (computerChoice === 'scissors') {
+          curWinner =  'user'
+        }
       }
-    }
-    if (userChoice === 'scissors') {
-      if (computerChoice === 'rock') {
-        curWinner =  'computer'
-      } else if (computerChoice === 'paper') {
-        curWinner =  'user'
+      if (userChoice === 'paper') {
+        if (computerChoice === 'rock') {
+          curWinner =  'user'
+        } else if (computerChoice === 'scissors') {
+          curWinner =  'computer'
+        }
       }
+      if (userChoice === 'scissors') {
+        if (computerChoice === 'rock') {
+          curWinner =  'computer'
+        } else if (computerChoice === 'paper') {
+          curWinner =  'user'
+        }
+      }
+      setWinner(curWinner);
+      if (curWinner === 'user') {
+        setScore(score + 1);
+      }
+      setGameState(4);
     }
-    setWinner(curWinner);
-    if (curWinner === 'user') {
-      setScore(score + 1);
-    }
-    setGameState(4);
-  }
+    
 
-  const getComputerChoice = () => {
-    const numChoice = Math.floor(Math.random() * 3);
-    if (choiceMap.has(numChoice)) {
-      let compChoice = choiceMap.get(numChoice);
-      setComputerChoice(compChoice);
-      setGameState(3);
+
+  const getComputerChoice = 
+    () => {
+      const numChoice = Math.floor(Math.random() * 3);
+      if (choiceMap.has(numChoice)) {
+        let compChoice = choiceMap.get(numChoice);
+        setComputerChoice(compChoice);
+        setGameState(3);
+      }
     }
-  }
 
   useEffect(() => {
     if (userChoice) {
