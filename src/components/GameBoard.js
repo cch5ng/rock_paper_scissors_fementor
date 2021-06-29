@@ -10,22 +10,6 @@ choiceMap.set(0, 'rock');
 choiceMap.set(1, 'paper');
 choiceMap.set(2, 'scissors')
 
-//calculate this programmatically? don't like how it is redundant
-const winners = {
-  'paper': {
-    'scissors': 0,
-    'rock': 1,
-  },
-  'scissors': {
-    'paper': 0,
-    'rock': 1,
-  },
-  'rock': {
-    'paper': 1,
-    'scissors': 0
-  }
-}
-
 const GameBoard = ({ toggleModal }) => {
 
   const [score, setScore] = useState(0);
@@ -107,7 +91,7 @@ const GameBoard = ({ toggleModal }) => {
     <div className="game_board_container">
       <div className="game_head_container">
         <div>
-          <img src={logo} alttext="logo" className="img_logo" />
+          <img src={logo} alt="logo" className="img_logo" />
         </div>
         <div className="score_container">
           <div className="text_score">Score</div>
