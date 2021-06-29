@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react';
+import {useEffect} from 'react';
 
 import iconPaper from '../images/icon-paper.svg';
 import iconRock from '../images/icon-rock.svg';
@@ -16,7 +16,7 @@ const Board2 = ({userChoice, resetGame, appendScore,
 
   useEffect(() => {
     getComputerChoice();
-  }, []);
+  }, [getComputerChoice]);
 
   let userChoiceDivClass = `choice_icon icon_left ${userChoice}_icon`;
   let computerChoiceDivClass = `choice_icon icon_right ${computerChoice}_icon`;;
@@ -25,10 +25,10 @@ const Board2 = ({userChoice, resetGame, appendScore,
     <div className="game_board2">
       <div className="row_top">
         <div className={userChoiceDivClass} >
-          <img src={iconsKey[userChoice]} className={userChoice} alttext="user choice icon" />
+          <img src={iconsKey[userChoice]} className={userChoice} alt="user choice icon" />
         </div>
         <div className={computerChoiceDivClass} >
-          <img src={iconsKey[computerChoice]} className={computerChoice} alttext="computer choice icon" />
+          <img src={iconsKey[computerChoice]} className={computerChoice} alt="computer choice icon" />
         </div>
       </div>
       <div className="row">

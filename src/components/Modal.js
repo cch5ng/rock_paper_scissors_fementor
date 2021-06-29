@@ -7,10 +7,10 @@ const Modal = ({ toggleModal }) => {
     <div className="modal_container">
       <h1>RULES</h1>
       <div className="image_container">
-        <img src={rulesImage} alttext="rules" />
+        <img src={rulesImage} alt="rules" />
       </div>
       <div onClick={toggleModal} className="image_container">
-        <img src={closeIcon} />
+        <img src={closeIcon} alt="close icon" />
       </div>
     </div>
   )
