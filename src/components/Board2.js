@@ -41,9 +41,9 @@ const Board2 = ({userChoice, resetGame, appendScore,
       </div>
 
       {winner.length > 0 && (
-        <div>
-          <div>You {winner === 'user' ? 'Win' : 'Lose'}</div>
-          <button onClick={resetGame}>Play Again</button>
+        <div className="center">
+          <div className="text_outcome">YOU {winner === 'user' ? 'WIN' : 'LOSE'}</div>
+          <button className="btn btn_secondary" onClick={resetGame}>Play Again</button>
         </div>
       )}
     </div>
