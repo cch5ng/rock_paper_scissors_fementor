@@ -24,17 +24,21 @@ const Board2 = ({userChoice, resetGame, appendScore,
   return (
     <div className="game_board2">
       <div className="row_top">
-        <div id="paper" className={userChoiceDivClass} >
+        <div className={userChoiceDivClass} >
           <img src={iconsKey[userChoice]} className={userChoice} alttext="user choice icon" />
         </div>
-        <div id="scissors" className={computerChoiceDivClass} >
+        <div className={computerChoiceDivClass} >
           <img src={iconsKey[computerChoice]} className={computerChoice} alttext="computer choice icon" />
         </div>
       </div>
-
-
-      <div>You Picked {userChoice}</div>
-      <div>The House Picked {computerChoice}</div>
+      <div className="row">
+        <div className="choice_caption" >
+          You Picked
+        </div>
+        <div className="choice_caption" >
+          The House Picked
+        </div>
+      </div>
 
       {winner.length > 0 && (
         <div>
