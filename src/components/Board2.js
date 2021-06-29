@@ -30,7 +30,7 @@ const Board2 = ({userChoice, resetGame, appendScore
 // */
 
 //faster to evaluated against sorted array if sorted array deep equals key, then get the winner
-const getWinner = React.useCallback(
+const getWinner = 
   (userChoice, computerChoice) => {
     let curWinner;
     if (userChoice === computerChoice) {
@@ -63,11 +63,10 @@ const getWinner = React.useCallback(
     if (curWinner === 'user') {
       appendScore();
     }
-  }, [appendScore]
-)
+  }
 
 
-    const getComputerChoice = React.useCallback(
+    const getComputerChoice = 
       () => {
         const numChoice = Math.floor(Math.random() * 3);
         if (choiceMap.has(numChoice)) {
@@ -76,9 +75,7 @@ const getWinner = React.useCallback(
           setComputerChoice(compChoice);
           getWinner(userChoice, compChoice);
         }
-      }, [getWinner, userChoice])
-
-
+      }
 
   const resetBoard = () => {
     setWinner('');
@@ -89,9 +86,7 @@ const getWinner = React.useCallback(
   useEffect(() => {
     console.log('gets to board2')
     getComputerChoice();
-  }, [getComputerChoice]); //getComputerChoice
-
-  getComputerChoice();
+  }, []); //getComputerChoice
 
   let userChoiceDivClass = `choice_icon icon_left ${userChoice}_icon`;
   let computerChoiceDivClass = `choice_icon icon_right ${computerChoice}_icon`;;
