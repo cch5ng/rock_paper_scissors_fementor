@@ -32,9 +32,25 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.btn {
+  border-radius: 8px;
+  width: 150px;
+  height: 50px;
+  font-family: 'Barlow Semi Condensed';
+  text-transform: uppercase;
+  font-size: 1.1rem;
+  margin: 25px 0;
 }
 
+.btn_primary {
+  background-color: var(--bgd-radial-gradient1);
+  border: 2px solid var(--header-outline); /*#e5e5e5;*/
+  color: #e5e5e5;
+}
+
+.btn_secondary {
+  background-color: #e5e5e5;
+  color: var(--bgd-radial-gradient1);
+  width: 200px;
+  border: none;
+}
