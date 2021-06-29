@@ -43,9 +43,9 @@ const GameBoard = ({ toggleModal }) => {
     setWinner('');
   }
 
-  const appendScore = () => {
-    setScore(score + 1);
-  }
+  // const appendScore = () => {
+  //   setScore(score + 1);
+  // }
 
   // /*
 // Paper beats Rock
