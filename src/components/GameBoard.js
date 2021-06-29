@@ -1,13 +1,10 @@
 import {useEffect, useState} from 'react';
 
-//import Board1 from './Board1';
-//import Board2 from './Board2';
 import './GameBoard.css';
 import logo from '../images/logo.svg';
 import iconPaper from '../images/icon-paper.svg';
 import iconRock from '../images/icon-rock.svg';
 import iconScissors from '../images/icon-scissors.svg';
-//import './Board1.css';
 
 const choiceMap = new Map();
 choiceMap.set(0, 'rock');
