@@ -6,9 +6,6 @@ import './Board1.css';
 const Board1 = ({handleUserChoice}) => {
 
   const handleUserClick = (ev) => {
-    console.log('target', ev.target)
-    console.log('className', ev.target.className)
-    console.log('type target', typeof ev.target)
     let {id, className} = ev.target;
     if (id) {
       handleUserChoice(id);
@@ -32,10 +29,8 @@ const Board1 = ({handleUserChoice}) => {
           <img src={iconRock} className="rock" alt="rock icon" onClick={handleUserClick}/>
         </div>
       </div>
-
     </div>
   )
-
 }
 
 export default Board1;

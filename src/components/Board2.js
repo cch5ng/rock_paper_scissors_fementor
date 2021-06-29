@@ -47,7 +47,6 @@ const Board2 = ({userChoice, resetGame, appendScore,
         </div>
       )}
     </div>
-
   )
 }
 

@@ -11,7 +11,6 @@ choiceMap.set(1, 'paper');
 choiceMap.set(2, 'scissors')
 
 const GameBoard = ({ toggleModal }) => {
-
   const [score, setScore] = useState(0);
   const [userChoice, setUserChoice] = useState(null);
   const [gameState, setGameState] = useState(1); //1 - 2
