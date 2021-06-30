@@ -86,7 +86,6 @@ const GameBoard = ({ toggleModal }) => {
     const numChoice = Math.floor(Math.random() * 3);
     if (choiceMap.has(numChoice)) {
       let compChoice = choiceMap.get(numChoice);
-      console.log('compChoice', compChoice)
       setComputerChoice(compChoice);
       setGameState(3);
       getWinner(compChoice);
