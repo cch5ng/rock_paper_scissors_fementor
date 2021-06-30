@@ -48,51 +48,51 @@ const GameBoard = ({ toggleModal }) => {
 // - Scissors beats Paper
 // */
 
-//faster to evaluated against sorted array if sorted array deep equals key, then get the winner
-  const getWinner = (compChoice) => {
-    let curWinner;
-    if (userChoice === compChoice) {
-      curWinner = 'none';
-    }
-    if (userChoice === 'rock') {
-      if (compChoice === 'paper') {
-        curWinner =  'computer'
-      } else if (compChoice === 'scissors') {
-        curWinner =  'user'
-      }
-    }
-    if (userChoice === 'paper') {
-      if (compChoice === 'rock') {
-        curWinner =  'user'
-      } else if (compChoice === 'scissors') {
-        curWinner =  'computer'
-      }
-    }
-    if (userChoice === 'scissors') {
-      if (compChoice === 'rock') {
-        curWinner =  'computer'
-      } else if (compChoice === 'paper') {
-        curWinner =  'user'
-      }
-    }
-    setWinner(curWinner);
-    if (curWinner === 'user') {
-      setScore(score + 1);
-    }
-    setGameState(4);
-  }
-    
-  const getComputerChoice = () => {
-    const numChoice = Math.floor(Math.random() * 3);
-    if (choiceMap.has(numChoice)) {
-      let compChoice = choiceMap.get(numChoice);
-      setComputerChoice(compChoice);
-      setGameState(3);
-      getWinner(compChoice);
-    }
-  }
-
   useEffect(() => {
+    //faster to evaluated against sorted array if sorted array deep equals key, then get the winner
+    const getWinner = (compChoice) => {
+      let curWinner;
+      if (userChoice === compChoice) {
+        curWinner = 'none';
+      }
+      if (userChoice === 'rock') {
+        if (compChoice === 'paper') {
+          curWinner =  'computer'
+        } else if (compChoice === 'scissors') {
+          curWinner =  'user'
+        }
+      }
+      if (userChoice === 'paper') {
+        if (compChoice === 'rock') {
+          curWinner =  'user'
+        } else if (compChoice === 'scissors') {
+          curWinner =  'computer'
+        }
+      }
+      if (userChoice === 'scissors') {
+        if (compChoice === 'rock') {
+          curWinner =  'computer'
+        } else if (compChoice === 'paper') {
+          curWinner =  'user'
+        }
+      }
+      setWinner(curWinner);
+      if (curWinner === 'user') {
+        setScore(s => s + 1);
+      }
+      setGameState(4);
+    }
+
+    const getComputerChoice = () => {
+      const numChoice = Math.floor(Math.random() * 3);
+      if (choiceMap.has(numChoice)) {
+        let compChoice = choiceMap.get(numChoice);
+        setComputerChoice(compChoice);
+        setGameState(3);
+        getWinner(compChoice);
+      }
+    }
+  
     if (userChoice) {
       getComputerChoice();
     }
