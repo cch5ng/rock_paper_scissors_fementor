@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState, useEffect} from 'react'; //useEffect, 
 
 import './GameBoard.css';
 import logo from '../images/logo.svg';
@@ -49,62 +49,55 @@ const GameBoard = ({ toggleModal }) => {
 // */
 
 //faster to evaluated against sorted array if sorted array deep equals key, then get the winner
-  const getWinner = () => {
-      let curWinner;
-      if (userChoice === computerChoice) {
-        curWinner = 'none';
-      }
-      if (userChoice === 'rock') {
-        if (computerChoice === 'paper') {
-          curWinner =  'computer'
-        } else if (computerChoice === 'scissors') {
-          curWinner =  'user'
-        }
-      }
-      if (userChoice === 'paper') {
-        if (computerChoice === 'rock') {
-          curWinner =  'user'
-        } else if (computerChoice === 'scissors') {
-          curWinner =  'computer'
-        }
-      }
-      if (userChoice === 'scissors') {
-        if (computerChoice === 'rock') {
-          curWinner =  'computer'
-        } else if (computerChoice === 'paper') {
-          curWinner =  'user'
-        }
-      }
-      setWinner(curWinner);
-      if (curWinner === 'user') {
-        setScore(score + 1);
-      }
-      setGameState(4);
+  const getWinner = (compChoice) => {
+    let curWinner;
+    if (userChoice === compChoice) {
+      curWinner = 'none';
     }
+    if (userChoice === 'rock') {
+      if (compChoice === 'paper') {
+        curWinner =  'computer'
+      } else if (compChoice === 'scissors') {
+        curWinner =  'user'
+      }
+    }
+    if (userChoice === 'paper') {
+      if (compChoice === 'rock') {
+        curWinner =  'user'
+      } else if (compChoice === 'scissors') {
+        curWinner =  'computer'
+      }
+    }
+    if (userChoice === 'scissors') {
+      if (compChoice === 'rock') {
+        curWinner =  'computer'
+      } else if (compChoice === 'paper') {
+        curWinner =  'user'
+      }
+    }
+    setWinner(curWinner);
+    if (curWinner === 'user') {
+      setScore(score + 1);
+    }
+    setGameState(4);
+  }
     
-
-
-  const getComputerChoice = 
-    () => {
-      const numChoice = Math.floor(Math.random() * 3);
-      if (choiceMap.has(numChoice)) {
-        let compChoice = choiceMap.get(numChoice);
-        setComputerChoice(compChoice);
-        setGameState(3);
-      }
+  const getComputerChoice = () => {
+    const numChoice = Math.floor(Math.random() * 3);
+    if (choiceMap.has(numChoice)) {
+      let compChoice = choiceMap.get(numChoice);
+      console.log('compChoice', compChoice)
+      setComputerChoice(compChoice);
+      setGameState(3);
+      getWinner(compChoice);
     }
+  }
 
   useEffect(() => {
     if (userChoice) {
       getComputerChoice();
     }
   }, [userChoice])
-
-  useEffect(() => {
-    if (computerChoice) {
-      getWinner();
-    }
-  }, [computerChoice]);
 
   let userChoiceDivClass = `choice_icon icon_left ${userChoice}_icon`;
   let computerChoiceDivClass = `choice_icon icon_right ${computerChoice}_icon`;;
@@ -139,7 +132,7 @@ const GameBoard = ({ toggleModal }) => {
           </div>
         )}
 
-        {gameState > 1 && (
+        {gameState === 2 && (
           <div className="game_board2">
             <div className="row_top">
               <div className={userChoiceDivClass} >
@@ -154,18 +147,40 @@ const GameBoard = ({ toggleModal }) => {
               <div className="choice_caption" >
                 You Picked
               </div>
+              {/* <div className="choice_caption" >
+                The House Picked
+              </div> */}
+            </div>  
+          </div>
+        )}
+
+        {gameState >=3 && (
+          <div className="game_board2">
+            <div className="row_top">
+              <div className={userChoiceDivClass} >
+                <img src={iconsKey[userChoice]} className={userChoice} alt="user choice icon" />
+              </div>
+              <div className={computerChoiceDivClass} >
+                <img src={iconsKey[computerChoice]} className={computerChoice} alt="computer choice icon" />
+              </div>
+            </div>
+            <div className="row">
+              <div className="choice_caption" >
+                You Picked
+              </div>
               <div className="choice_caption" >
                 The House Picked
               </div>
             </div>
-
-            <div className="center">
-              <div className="text_outcome">YOU {winner === 'user' ? 'WIN' : 'LOSE'}</div>
-              <button className="btn btn_secondary" onClick={resetGame}>Play Again</button>
-            </div>
-  
+            {gameState === 4 && (
+              <div className="center">
+                <div className="text_outcome">YOU {winner === 'user' ? 'WIN' : 'LOSE'}</div>
+                <button className="btn btn_secondary" onClick={resetGame}>Play Again</button>
+              </div>
+            )}  
           </div>
         )}
+
       </div>
       <div className="game_footer">
         <button className="btn btn_primary" onClick={toggleModal}>Rules</button>
